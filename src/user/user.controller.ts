@@ -1,8 +1,8 @@
 import { Controller, Post, Body, HttpException, HttpStatus, UseGuards, Get, Request } from '@nestjs/common';
 import { UsersService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { AuthGuard } from '@nestjs/passport';
-
+import { Throttle } from '@nestjs/throttler';
+@Throttle({ default: { limit: 3, ttl: 1000 } })
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }

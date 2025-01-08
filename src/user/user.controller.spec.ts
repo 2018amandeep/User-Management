@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateUserDto } from './dto/create-user.dto'; // Assuming you have a DTO
 import { UsersController } from './user.controller';
 import { UsersService } from './user.service';
 import { JwtService } from '@nestjs/jwt'; // Import JwtService
-import { CreateUserDto } from './dto/create-user.dto'; // Assuming you have a DTO
 
 // Mock the UsersService with proper types for the methods
 const user = {
