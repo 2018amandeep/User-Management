@@ -71,6 +71,15 @@ $ mau deploy
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
+## CURL
+Signup curl --location 'http://localhost:3000/users/signup'
+--header 'Content-Type: application/json'
+--data-raw '{ "name": "John Doe", "mobile": "8812374832", "password": "Seyrud@123" }'
+
+login curl --location 'http://localhost:3000/users/signup'
+--header 'Content-Type: application/json'
+--data-raw '{ "name": "John Doe", "mobile": "8812374832", "password": "Seyrud@123" }'
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
