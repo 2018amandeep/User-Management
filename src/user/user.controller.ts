@@ -1,12 +1,38 @@
 import { Controller, Post, Body, HttpException, HttpStatus, UseGuards, Get, Request } from '@nestjs/common';
-import { UsersService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UsersService } from './user.service';
 import { Throttle } from '@nestjs/throttler';
 @Throttle({ default: { limit: 3, ttl: 1000 } })
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
+
+  @Get()
+  async call() {
+    // return await this.usersService.advancedLoadTest({
+    //   endpoints: [
+    //     "https://telecubesapis.bngrenew.com/apn/config",
+    //     "https://telecubesapis.bngrenew.com/user/info"
+    //   ],
+    //   duration: 60000, // 1-minute test
+    //   concurrency: 100, // 100 concurrent requests
+    //   intervalTime: 20, // Randomized interval between 5-20ms
+    //   httpMethods: ["POST", "GET"],
+    //   generatePayload: () => ({
+    //     "mcc": "652",
+    //     "mnc": "04",
+    //     "uid": Math.random().toString(36).substring(7) // Unique user ID per request
+    //   })
+    // });
+
+    return await this.usersService.advancedLoadTest1({
+      baseURL: "https://sandbox.cubegames.live/?camp=C2Ctest&rcid={rcid}&flow=direct",
+      duration: 60000, // Run for 1 minute
+      concurrency: 100, // 100 concurrent requests
+      intervalTime: 20, // Random interval (5-20ms)
+    })
+  }
   @Post('signup')
   async signup(
     @Body() dto: CreateUserDto,
